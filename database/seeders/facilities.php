@@ -13,11 +13,16 @@ class facilities extends Seeder
     public function run(): void
     {
         $facilities = [
-            ['name' => 'Central Hospital', 'type' => 'Central District'],
-            ['name' => 'North Clinic', 'type' => 'Hospital District'],
-            ['name' => 'East Health Center', 'type' => 'Health Center'],
-            ['name' => 'West Medical Facility', 'type' => 'Dispensary'],
-            ['name' => 'South Care Unit', 'type' => 'Standalone Clinic'],
+            ['name' => 'Muhimbili National Hospital', 'type' => 'National Hospital', 'location' => 'Upanga'],
+            ['name' => 'Amana Hospital', 'type' => 'District Hospital', 'location' => 'Ilala'],
+            ['name' => 'Mwananyamala Hospital', 'type' => 'District Hospital', 'location' => 'Mwananyamala'],
+            ['name' => 'Temeke Regional Referral Hospital', 'type' => 'Regional Referral Hospital', 'location' => 'Temeke'],
+            ['name' => 'Morogoro Regional Referral Hospital', 'type' => 'Regional Referral Hospital', 'location' => 'Kichangani'],
+            ['name' => 'St. Francis Referral Hospital', 'type' => 'Referral Hospital', 'location' => 'Ifakara'],
+            ['name' => 'Kilosa District Hospital', 'type' => 'District Hospital', 'location' => 'Kilosa Mjini'],
+            ['name' => 'Turiani Hospital', 'type' => 'District Hospital', 'location' => 'Turiani'],
+            ['name' => 'Tanga Regional Referral Hospital', 'type' => 'Regional Referral Hospital', 'location' => 'Bombo'],
+            ['name' => 'Bombo Hospital', 'type' => 'District Hospital', 'location' => 'Bombo']
         ];
 
         foreach ($facilities as $facility) {
