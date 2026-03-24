@@ -12,7 +12,7 @@ class Sample extends Model
     protected $fillable = [
         'sample_code',
         'facility_id',
-        'type',
+        'sample_type_id',
         'collection_date',
         'collected_by',
         'status'
@@ -27,6 +27,12 @@ class Sample extends Model
     {
         return $this->belongsTo(Facility::class);
     }
+
+    public function sampleType()
+    {
+        return $this->belongsTo(SampleType::class);
+    }
+
 
     public function results()
     {

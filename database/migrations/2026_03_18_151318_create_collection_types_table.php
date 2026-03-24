@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('samples', function (Blueprint $table) {
+        Schema::create('collection_types', function (Blueprint $table) {
             $table->id();
-            $table->string('sample_code');
-            $table->foreignId('facility_id')->constrained();
-            $table->foreignId('sample_type_id')->constrained();
-            $table->dateTime('collection_date')->nullable();
-            $table->string('status')->default('collected');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('samples');
+        Schema::dropIfExists('collection_types');
     }
 };
