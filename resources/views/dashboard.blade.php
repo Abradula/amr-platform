@@ -64,7 +64,7 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            height: 300px;
+            height: 500px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
@@ -75,6 +75,7 @@
             font-size: 14px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -108,8 +109,23 @@
         <!-- CHART SECTION -->
         <div class="section">
             <div class="chart-box">
-                <h3>Analytics (Coming Soon)</h3>
-                <p style="color: gray;">You can integrate charts here (Chart.js)</p>
+              <div style="display:flex; gap:30px; flex-wrap:wrap;">
+                <div>
+                    <h4>Resistance Levels</h4>
+                    <canvas id="resistanceChart"></canvas>
+                </div>
+
+                <div>
+                    <h4>Samples by Facility</h4>
+                    <canvas id="facilityChart"></canvas>
+                </div>
+
+                <div>
+                    <h4>Sample Types</h4>
+                    <canvas id="sampleTypeChart"></canvas>
+                </div>
+
+                </div>
             </div>
         </div>
 
@@ -121,4 +137,47 @@
     </div>
 
 </body>
+<script>
+    // 🔴 Resistance Levels
+    const resistanceLabels = @json($resistance_levels->pluck('label'));
+    const resistanceData = @json($resistance_levels->pluck('total'));
+
+    new Chart(document.getElementById('resistanceChart'), {
+        type: 'pie',
+        data: {
+            labels: resistanceLabels,
+            datasets: [{
+                data: resistanceData
+            }]
+        }
+    });
+
+    // 🏥 Samples by Facility
+    const facilityLabels = @json($samples_by_facility->map(fn($x) => $x->facility->name ?? 'Unknown'));
+    const facilityData = @json($samples_by_facility->pluck('total'));
+
+    new Chart(document.getElementById('facilityChart'), {
+        type: 'pie',
+        data: {
+            labels: facilityLabels,
+            datasets: [{
+                data: facilityData
+            }]
+        }
+    });
+
+    // 🧪 Sample Types
+    const sampleTypeLabels = @json($sample_type_distribution->map(fn($x) => $x->sampleType->name ?? 'Unknown'));
+    const sampleTypeData = @json($sample_type_distribution->pluck('total'));
+
+    new Chart(document.getElementById('sampleTypeChart'), {
+        type: 'pie',
+        data: {
+            labels: sampleTypeLabels,
+            datasets: [{
+                data: sampleTypeData
+            }]
+        }
+    });
+</script>
 </html>

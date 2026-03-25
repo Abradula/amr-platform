@@ -16,7 +16,7 @@ class LimsController extends Controller
         DB::beginTransaction();
 
         try {
-        $sample = Sample::create($request->only(['sample_code', 'facility_id', 'sample_type_id']));
+        $sample = Sample::create($request->only(['sample_code', 'facility_id', 'sample_type_id', 'reagent']));
 
         foreach ($request->results as $res) {
             $result = TestResult::create([

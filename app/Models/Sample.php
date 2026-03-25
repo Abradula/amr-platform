@@ -13,13 +13,8 @@ class Sample extends Model
         'sample_code',
         'facility_id',
         'sample_type_id',
-        'collection_date',
-        'collected_by',
+        'reagent',
         'status'
-    ];
-
-    protected $casts = [
-        'collection_date' => 'datetime',
     ];
 
     // Relationships

@@ -29,21 +29,22 @@ class WhonetController extends Controller
                 if (count($row) < 4) continue;
 
                 $facility_id = Facility::where('name', $row[1])->first()?->id;
-                $sample_type_id = SampleType::where('name', $row[3])->first()?->id;
+                $sample_type_id = SampleType::where('name', $row[4])->first()?->id;
 
                 $sample = Sample::create((
                     [
                         'sample_code' => $row[0],
                         'facility_id' => $facility_id,
-                        'sample_type_id' => $sample_type_id
+                        'sample_type_id' => $sample_type_id,
+                        'reagent' => $row[2],
                     ]
                 ));
 
                 $result = TestResult::create([
                     'sample_id' => $sample->id,
-                    'organism' => $row[4],
-                    'antibiotic' => $row[5],
-                    'resistance_level' => $row[6],
+                    'organism' => $row[5],
+                    'antibiotic' => $row[6],
+                    'resistance_level' => $row[7],
                 ]);
 
                 app(\App\Services\AlertService::class)->checkResistance($result);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('drug_name');
             $table->integer('quantity');
             $table->date('report_date');
+            $table->string('reason');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('sample_code');
             $table->foreignId('facility_id')->constrained();
             $table->foreignId('sample_type_id')->constrained();
-            $table->dateTime('collection_date')->nullable();
+            $table->string('reagent');
             $table->string('status')->default('collected');
             $table->timestamps();
         });

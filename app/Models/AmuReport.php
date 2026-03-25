@@ -10,7 +10,8 @@ class AmuReport extends Model
         'facility_id',
         'drug_name',
         'quantity',
-        'report_date'
+        'report_date',
+        'reason'
     ];
 
     protected $casts = [
